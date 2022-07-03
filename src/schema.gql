@@ -1,0 +1,36 @@
+type Query {
+  findIssueQuery(id: String!): Issue
+  findAllIssuesQuery: [Issue!]
+}
+
+type Mutation {
+  createIssueMutation(input: IssueInput!): MoveResponse!
+  progressIssueMutation(id: String!): MoveResponse!
+  completeIssueMutation(id: String!): MoveResponse!
+  discardIssueMutation(id: String!): MoveResponse!
+  deleteIssueMutation(id: String!): MoveResponse!
+}
+
+type Issue {
+  id: String!
+  title: String!
+  status: Status!
+  createdAt: String!
+}
+
+type MoveResponse {
+  id: String!
+  message: String!
+}
+
+input IssueInput {
+  title: String!
+  createdAt: String!
+}
+
+enum Status {
+  BACKLOG
+  IN_PROGRESS
+  COMPLETED
+  DISCARDED
+}
